@@ -15,6 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         var viewModel: NewsHomeViewModelProtocol
         
+        // Checking the internet connectivity
         if isInternetAvailable {
             viewModel = NewsHomeViewModel(objNetwork: NetworkManager.shared)
         }
