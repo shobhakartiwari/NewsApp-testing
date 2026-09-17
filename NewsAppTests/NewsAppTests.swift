@@ -9,30 +9,54 @@ import XCTest
 @testable import NewsApp
 
 final class NewsAppTests: XCTestCase {
-
+    
+    var objCalculator: Calculator?
+    var newsHomeViewModel: NewsHomeViewModelProtocol?
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        objCalculator = Calculator()
+        newsHomeViewModel = MockNewsHomeViewModel()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        objCalculator = nil
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-        // XCTest Documentation
-        // https://developer.apple.com/documentation/xctest
+    
+    func testSum() {
+        let sumResult = objCalculator?.sum(n1: 1, n2: 2)
+        XCTAssertEqual(sumResult, 3)
+        
+        let optionlSum1 = objCalculator?.sum(n1: nil, n2: 2)
+        XCTAssertEqual(optionlSum1, 0)
+        
+        let optionlSum2 = objCalculator?.sum(n1: 1, n2: nil)
+        XCTAssertEqual(optionlSum2, 0)
+        
+        let optionlSum3 = objCalculator?.sum(n1: nil, n2: nil)
+        XCTAssertEqual(optionlSum3, 0)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testSub() {
+        
     }
-
+    
+    func testMul() {
+        
+    }
+    
+    func testDiv() {
+        
+    }
+    
+    func testGetTotalNewsCount() {
+        let count = newsHomeViewModel?.getTotalNewsCount()
+        XCTAssertEqual(count, 0)
+    }
+    
+    func testGetNews() {
+        let news = newsHomeViewModel?.getNews(for: 0)
+        XCTAssertNil(news)
+    }
 }
+
+
